@@ -1,0 +1,26 @@
+reading flat
+  13 superseded archive(s) ignored
+  52 device archive(s)
+  staff records dropped: 1 participant(s), 13 session(s)
+  strict: 9 session(s) dropped {'emulated_device': 6, 'no_typing': 3}
+  strict: 1 participant(s) left with no sessions, removed
+  strict: 1 device(s) left with no sessions, removed
+
+  people        61
+  participants  61   (person × device)
+  devices       51
+  sessions      371
+  key events    74806
+  sensor rows   12497116
+  people on 2+ devices   0 of 61
+  devices with 2+ people 9 of 51
+  guided orders          ABC:15, BCA:21, CAB:25
+  on-surface sessions still   20 of 51 measured   (median moving fraction 12%)
+  on-surface sessions unverifiable  16  (device has no gyroscope)
+  sessions with constant pressure  343 of 371
+
+  warnings:
+    ! no person appears on more than one device: the person/device confound is total, and no cross-device claim can be supported
+    ! 31 session(s) labelled on_surface were recorded with the device in motion — treat hold_style as the instruction given, not the condition observed, and filter on motion_active_fraction instead
+
+written to dataset_strict

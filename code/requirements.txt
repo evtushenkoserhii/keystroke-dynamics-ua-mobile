@@ -1,0 +1,13 @@
+# Dependencies of convert.py.
+#
+#   python -m pip install -r requirements.txt
+#
+# pandas  - required always
+# pyarrow - required for the Parquet sensor files; with --no-parquet the
+#           sensors are written as gzipped CSV and pyarrow can be omitted.
+#
+# The lower bounds are the versions the published package was produced with;
+# newer releases work.
+
+pandas>=2.0
+pyarrow>=14.0

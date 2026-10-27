@@ -1,0 +1,28 @@
+reading flat
+  25 superseded archive(s) ignored
+  57 device archive(s)
+  re-used profile: 12 earlier session(s) dropped from 1 record(s)
+  staff records dropped: 1 participant(s), 13 session(s)
+  strict: 10 session(s) dropped {'emulated_device': 6, 'no_typing': 4}
+  strict: 1 participant(s) left with no sessions, removed
+  strict: 1 device(s) left with no sessions, removed
+
+  people        71
+  participants  82   (person × device)
+  devices       56
+  sessions      498
+  key events    97974
+  sensor rows   16608404
+  people on 2+ devices   11 of 71
+  devices with 2+ people 14 of 56
+  guided orders          ABC:24, BCA:26, CAB:32
+  on-surface sessions still   38 of 74 measured   (median moving fraction 10%)
+  on-surface sessions unverifiable  16  (device has no gyroscope)
+  sessions with constant pressure  470 of 498
+
+  warnings:
+    ! 36 session(s) labelled on_surface were recorded with the device in motion — treat hold_style as the instruction given, not the condition observed, and filter on motion_active_fraction instead
+
+  35 sensor file(s) of dropped sessions removed
+  content fingerprint f34641cc80ad5f4b
+written to fp_final3

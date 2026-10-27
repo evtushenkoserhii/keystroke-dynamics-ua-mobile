@@ -1,0 +1,15 @@
+# Content fingerprint of the published package.
+# Tables: sha256 of the written file, which is byte-identical on any
+# platform. Sensors: a hash of the frame contents, because Parquet
+# footers carry the writer's version and its bytes are not.
+# Recompute with code/verify.py; checksums.sha256 covers every file
+# as bytes and cannot be reproduced on another machine.
+# produced by python 3.13.17, pandas 3.0.5, pyarrow 26.0.0, Linux x86_64
+
+e999a9bf0813444793c6d89e15cf63072d8048f07ab5ccff660e23c891109914  participants
+36a084a5b755db4a0c3bd92d1f3d0c6750d0039b028623781ceb93a0791e1e96  devices
+e6ed5f11440db6dcd316eb3e5c8834d6d2ce857582b251ee62b21944936671ab  sessions
+d3388d1227109e49a26b4221c3e37cbb8fb8ee615319fe7aeda08024bc5e072f  key_events
+dc9d536400902d96023b2f069e95112a15bc68938c53c0ba6e27f756486beca3  sensors
+
+00330347a3e47af885486916fd89306f73a7c5baf5124d672075726785babcf8  overall

@@ -1,0 +1,607 @@
+{
+ "profile": "data-package",
+ "name": "kdua-mobile",
+ "title": "KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors",
+ "description": "498 typing sessions from 71 people on 56 Android phones: key press and release timings, per-key touch geometry, and four motion sensor streams at a requested 200 Hz. Ukrainian text on the YTsUKEN layout.",
+ "version": "1.0",
+ "created": "2026-10-26T00:00:00Z",
+ "keywords": [
+  "keystroke dynamics",
+  "behavioural biometrics",
+  "mobile authentication",
+  "touch dynamics",
+  "inertial sensors",
+  "Ukrainian",
+  "Android"
+ ],
+ "licenses": [
+  {
+   "name": "CC-BY-4.0",
+   "path": "https://creativecommons.org/licenses/by/4.0/",
+   "title": "Creative Commons Attribution 4.0 International"
+  }
+ ],
+ "contributors": [
+  {
+   "title": "S. V. Yevtushenko",
+   "role": "author",
+   "organization": "National University \"Odesa Law Academy\", Department of Cybersecurity"
+  }
+ ],
+ "homepage": "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile",
+ "sources": [
+  {
+   "title": "Collected with a custom Android input method; see docs/collection_protocol.md",
+   "path": "docs/collection_protocol.md"
+  }
+ ],
+ "resources": [
+  {
+   "name": "participants",
+   "path": "data/participants.csv",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "One row per (person, device) record.",
+   "schema": {
+    "fields": [
+     {
+      "name": "participant_id",
+      "type": "string",
+      "description": "Random identifier, unique per device, not per person."
+     },
+     {
+      "name": "person_id",
+      "type": "string",
+      "description": "The same person across devices. Derived at packaging; the participant number itself is not published."
+     },
+     {
+      "name": "device_id",
+      "type": "string",
+      "description": "Random identifier, stable across participants on the same phone."
+     },
+     {
+      "name": "age_group",
+      "type": "string"
+     },
+     {
+      "name": "gender",
+      "type": "string"
+     },
+     {
+      "name": "handedness",
+      "type": "string"
+     },
+     {
+      "name": "typing_experience",
+      "type": "string"
+     },
+     {
+      "name": "own_device",
+      "type": "string",
+      "description": "own or borrowed. Typing on an unfamiliar phone differs systematically; a covariate, not noise."
+     },
+     {
+      "name": "consent_version",
+      "type": "number"
+     }
+    ]
+   }
+  },
+  {
+   "name": "devices",
+   "path": "data/devices.csv",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "One row per phone.",
+   "schema": {
+    "fields": [
+     {
+      "name": "device_id",
+      "type": "string"
+     },
+     {
+      "name": "manufacturer",
+      "type": "string"
+     },
+     {
+      "name": "model",
+      "type": "string"
+     },
+     {
+      "name": "android_release",
+      "type": "integer"
+     },
+     {
+      "name": "api_level",
+      "type": "integer"
+     },
+     {
+      "name": "screen_w_px",
+      "type": "integer"
+     },
+     {
+      "name": "screen_h_px",
+      "type": "integer"
+     },
+     {
+      "name": "density_dpi",
+      "type": "integer",
+      "description": "Needed for any conversion of pixels to millimetres."
+     },
+     {
+      "name": "sensor_hardware",
+      "type": "string",
+      "description": "JSON array, one object per sensor: type, name, vendor, model, nominal rate, resolution, range."
+     },
+     {
+      "name": "best_sensor_delay_us",
+      "type": "integer",
+      "description": "Fastest rate any sensor on this device can deliver; an emulator reports 200 ms across the board."
+     },
+     {
+      "name": "screen_diag_in",
+      "type": "number",
+      "description": "Physical screen diagonal, used with the above to detect emulated devices."
+     }
+    ]
+   }
+  },
+  {
+   "name": "sessions",
+   "path": "data/sessions.csv",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "One row per session, with the quality fields.",
+   "schema": {
+    "fields": [
+     {
+      "name": "session_id",
+      "type": "string"
+     },
+     {
+      "name": "participant_id",
+      "type": "string"
+     },
+     {
+      "name": "device_id",
+      "type": "string"
+     },
+     {
+      "name": "task_code",
+      "type": "string",
+      "description": "transcribe_ua, fixed_phrase or free_ua. See docs/stimuli.md."
+     },
+     {
+      "name": "stimulus",
+      "type": "string"
+     },
+     {
+      "name": "stimulus_sha1",
+      "type": "string"
+     },
+     {
+      "name": "privacy_mode",
+      "type": "string",
+      "description": "KEY_ID or CLASS_ONLY. In CLASS_ONLY the key identity and absolute touch geometry are not published."
+     },
+     {
+      "name": "layout",
+      "type": "string"
+     },
+     {
+      "name": "posture",
+      "type": "string"
+     },
+     {
+      "name": "hold_style",
+      "type": "string",
+      "description": "The grip ASKED OF the participant, not the one observed. Filter on motion_active_fraction instead."
+     },
+     {
+      "name": "guided",
+      "type": "boolean"
+     },
+     {
+      "name": "guided_step",
+      "type": "integer",
+      "description": "Position in the guided sequence, 1 to 6. Step 1 is familiarisation and is excluded from analysis."
+     },
+     {
+      "name": "guided_order",
+      "type": "string",
+      "description": "Which row of the 3x3 Latin square this participant received."
+     },
+     {
+      "name": "started_at_utc",
+      "type": "string",
+      "description": "Date of the session. Published to the day only; see docs/privacy.md."
+     },
+     {
+      "name": "started_nanos",
+      "type": "integer",
+      "description": "elapsedRealtimeNanos at session start: nanoseconds since the device booted, not wall clock."
+     },
+     {
+      "name": "duration_ms",
+      "type": "integer"
+     },
+     {
+      "name": "requested_sensor_period_us",
+      "type": "integer"
+     },
+     {
+      "name": "uptime_to_realtime_offset_nanos",
+      "type": "integer"
+     },
+     {
+      "name": "key_down_count",
+      "type": "integer"
+     },
+     {
+      "name": "caret_moves",
+      "type": "integer"
+     },
+     {
+      "name": "key_event_count",
+      "type": "integer"
+     },
+     {
+      "name": "sensor_sample_count",
+      "type": "integer",
+      "description": "Zero means the sensor stream never started; the session is usable for keystroke features only."
+     },
+     {
+      "name": "schema_version",
+      "type": "integer"
+     },
+     {
+      "name": "app_version",
+      "type": "string"
+     },
+     {
+      "name": "kb_view_w_px",
+      "type": "integer"
+     },
+     {
+      "name": "kb_view_h_px",
+      "type": "integer"
+     },
+     {
+      "name": "power_save_mode",
+      "type": "boolean"
+     },
+     {
+      "name": "thermal_start",
+      "type": "string"
+     },
+     {
+      "name": "thermal_end",
+      "type": "string"
+     },
+     {
+      "name": "battery_start_pct",
+      "type": "integer"
+     },
+     {
+      "name": "battery_end_pct",
+      "type": "integer"
+     },
+     {
+      "name": "charging",
+      "type": "boolean"
+     },
+     {
+      "name": "quality",
+      "type": "string",
+      "description": "JSON array, per sensor: sample count, achieved rate, nominal rate, largest gap."
+     },
+     {
+      "name": "gyro_samples",
+      "type": "number",
+      "description": "Zero means the device has no gyroscope, not that it was still."
+     },
+     {
+      "name": "gyro_active_samples",
+      "type": "number"
+     },
+     {
+      "name": "external_input",
+      "type": "string",
+      "description": "The field disagreed with the recorded events. Empty in sessions older than schema 9: not checked, not clean."
+     },
+     {
+      "name": "dropped_key_events",
+      "type": "number"
+     },
+     {
+      "name": "motion_active_fraction",
+      "type": "number",
+      "description": "Share of gyroscope samples in which the device was moving. Empty where it cannot be computed."
+     },
+     {
+      "name": "typed_chars",
+      "type": "integer"
+     },
+     {
+      "name": "quality_flag",
+      "type": "string",
+      "description": "ok in the published build; the other values exist in the non-strict build."
+     }
+    ]
+   }
+  },
+  {
+   "name": "key_events",
+   "path": "data/key_events.csv.gz",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "One row per key press or release.",
+   "schema": {
+    "fields": [
+     {
+      "name": "session_id",
+      "type": "string"
+     },
+     {
+      "name": "seq",
+      "type": "integer"
+     },
+     {
+      "name": "action",
+      "type": "string",
+      "description": "down or up. No cancel events occur in this corpus."
+     },
+     {
+      "name": "key_class",
+      "type": "string",
+      "description": "LETTER, DIGIT, PUNCT, SPACE, BACKSPACE, SHIFT, ENTER, LAYOUT. Always present."
+     },
+     {
+      "name": "key_row",
+      "type": "number"
+     },
+     {
+      "name": "key_col",
+      "type": "number"
+     },
+     {
+      "name": "key_code",
+      "type": "number",
+      "description": "Unicode code point of the unshifted character. Empty for backspace and in CLASS_ONLY sessions."
+     },
+     {
+      "name": "t_nanos",
+      "type": "integer"
+     },
+     {
+      "name": "touch_x",
+      "type": "number",
+      "description": "Fraction of the keyboard view, 0 to 1, not pixels."
+     },
+     {
+      "name": "touch_y",
+      "type": "number"
+     },
+     {
+      "name": "offset_x",
+      "type": "number",
+      "description": "Touch displacement from the key centre, normalised by key size. Present in CLASS_ONLY as well."
+     },
+     {
+      "name": "offset_y",
+      "type": "number"
+     },
+     {
+      "name": "touch_major",
+      "type": "number"
+     },
+     {
+      "name": "touch_minor",
+      "type": "number"
+     },
+     {
+      "name": "touch_size",
+      "type": "number"
+     },
+     {
+      "name": "pressure",
+      "type": "number",
+      "description": "Constant on most Android digitisers; see docs/quality.md before using it."
+     },
+     {
+      "name": "pointer_id",
+      "type": "integer"
+     },
+     {
+      "name": "key_w",
+      "type": "number",
+      "description": "Key width in view pixels, unlike touch_x which is a fraction."
+     },
+     {
+      "name": "key_h",
+      "type": "number"
+     },
+     {
+      "name": "t_rel_ns",
+      "type": "integer",
+      "description": "Nanoseconds since session start. Use this unless you have a reason not to."
+     }
+    ]
+   }
+  },
+  {
+   "name": "sensors",
+   "path": "data/sensors/",
+   "profile": "data-resource",
+   "format": "parquet",
+   "mediatype": "application/vnd.apache.parquet",
+   "description": "One Parquet file per session, named by session_id: columns session_id, sensor_name, t_nanos, t_recv_nanos, x, y, z, w, accuracy, t_rel_ns. 495 files; three sessions produced no sensor data and therefore no file."
+  },
+  {
+   "name": "keystrokes",
+   "path": "data/features/keystrokes.csv.gz",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "Derived: one row per key press with its hold time.",
+   "schema": {
+    "fields": [
+     {
+      "name": "session_id",
+      "type": "string"
+     },
+     {
+      "name": "seq_down",
+      "type": "integer"
+     },
+     {
+      "name": "seq_up",
+      "type": "integer"
+     },
+     {
+      "name": "t_rel_ns",
+      "type": "integer"
+     },
+     {
+      "name": "hold_ms",
+      "type": "number"
+     },
+     {
+      "name": "key_class",
+      "type": "string"
+     },
+     {
+      "name": "key_row",
+      "type": "number"
+     },
+     {
+      "name": "key_col",
+      "type": "number"
+     },
+     {
+      "name": "key_code",
+      "type": "number"
+     },
+     {
+      "name": "offset_x",
+      "type": "number"
+     },
+     {
+      "name": "offset_y",
+      "type": "number"
+     },
+     {
+      "name": "touch_size",
+      "type": "number"
+     },
+     {
+      "name": "pressure",
+      "type": "number"
+     },
+     {
+      "name": "touch_major",
+      "type": "number"
+     },
+     {
+      "name": "touch_minor",
+      "type": "number"
+     },
+     {
+      "name": "key_w",
+      "type": "number"
+     },
+     {
+      "name": "key_h",
+      "type": "number"
+     }
+    ]
+   }
+  },
+  {
+   "name": "digraphs",
+   "path": "data/features/digraphs.csv.gz",
+   "profile": "tabular-data-resource",
+   "format": "csv",
+   "mediatype": "text/csv",
+   "encoding": "utf-8",
+   "description": "Derived: one row per adjacent pair of presses with DD, UD, UU, DU.",
+   "schema": {
+    "fields": [
+     {
+      "name": "session_id",
+      "type": "string"
+     },
+     {
+      "name": "seq_down_1",
+      "type": "integer"
+     },
+     {
+      "name": "key_class_1",
+      "type": "string"
+     },
+     {
+      "name": "key_class_2",
+      "type": "string"
+     },
+     {
+      "name": "key_code_1",
+      "type": "number"
+     },
+     {
+      "name": "key_code_2",
+      "type": "number"
+     },
+     {
+      "name": "hold_1_ms",
+      "type": "number"
+     },
+     {
+      "name": "hold_2_ms",
+      "type": "number"
+     },
+     {
+      "name": "dd_ms",
+      "type": "number"
+     },
+     {
+      "name": "ud_ms",
+      "type": "number"
+     },
+     {
+      "name": "uu_ms",
+      "type": "number"
+     },
+     {
+      "name": "du_ms",
+      "type": "number"
+     },
+     {
+      "name": "long_pause",
+      "type": "boolean"
+     },
+     {
+      "name": "digraph",
+      "type": "string"
+     }
+    ]
+   }
+  },
+  {
+   "name": "verification_protocol",
+   "path": "splits/verification_protocol.json",
+   "profile": "data-resource",
+   "format": "json",
+   "mediatype": "application/json",
+   "description": "The fixed verification experiment: enrolment and probe sessions per record, and every pair to be scored, labelled by kind."
+  }
+ ]
+}

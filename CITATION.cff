@@ -1,0 +1,57 @@
+cff-version: 1.2.0
+message: "If you use this dataset, cite it as below. Attribution is a condition of the CC BY 4.0 licence, not a courtesy."
+title: "KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors"
+abstract: >-
+  498 typing sessions from 71 people on 56 Android phones, recorded with a
+  custom input method: key press and release timings, per-key touch geometry,
+  and accelerometer, gyroscope, magnetometer and rotation vector streams at a
+  requested 200 Hz. Ukrainian text on the ЙЦУКЕН layout. The design breaks the
+  confounding of person and device from both sides, with 14 devices used by two
+  or more people and 11 people recorded on two devices, and it measures whether
+  the posture condition asked of the participant actually held, instead of
+  assuming it.
+type: dataset
+version: "1.0"
+date-released: "2026-10-26"
+license: CC-BY-4.0
+# TODO before release: replace with the Zenodo DOI of version 1.0, and keep the
+# concept DOI in identifiers below so that later versions stay reachable.
+doi: "10.5281/zenodo.0000000"
+url: "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile"
+repository-code: "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile"
+keywords:
+  - keystroke dynamics
+  - behavioural biometrics
+  - mobile authentication
+  - touch dynamics
+  - inertial sensors
+  - Ukrainian
+  - Android
+authors:
+  # TODO: expand the given names before release; initials are what the
+  # published papers carry.
+  - family-names: "Yevtushenko"
+    given-names: "S. V."
+    orcid: "https://orcid.org/0009-0005-6895-8156"
+    affiliation: "National University \"Odesa Law Academy\", Department of Cybersecurity, Odesa, Ukraine"
+references:
+  - type: conference-paper
+    title: "Quantitative assessment of residual information leakage in anonymised collection of keystroke dynamics data"
+    authors:
+      - family-names: "Yevtushenko"
+        given-names: "Serhii"
+        orcid: "https://orcid.org/0009-0005-6895-8156"
+    year: 2026
+    notes: "The privacy analysis of the collection mode used for this dataset; see docs/privacy.md"
+  - type: article
+    title: "Aspects of building and applying keystroke dynamics analysis systems for user authentication"
+    authors:
+      - family-names: "Yevtushenko"
+        given-names: "S. V."
+    journal: "Informatics and Mathematical Methods in Simulation"
+    volume: 15
+    issue: 3
+    start: 367
+    end: 376
+    year: 2025
+    doi: "10.15276/imms.v15.no3.367"

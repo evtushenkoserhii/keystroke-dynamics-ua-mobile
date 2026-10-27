@@ -1,0 +1,54 @@
+{
+ "_comment": [
+  "Metadata for the Zenodo record of version 1.0. Two ways to use it:",
+  "paste the fields into the web form, or send it as the metadata body to the",
+  "Zenodo REST API. It is NOT named .zenodo.json on purpose: that filename",
+  "makes the GitHub-Zenodo webhook mint a second DOI for a snapshot of the",
+  "repository, which would be a record without the sensor data in it. See the",
+  "release instructions.",
+  "Fill in the two placeholders marked REPLACE-ME before publishing."
+ ],
+ "upload_type": "dataset",
+ "title": "KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors, version 1.0",
+ "version": "1.0",
+ "publication_date": "2026-10-27",
+ "language": "ukr",
+ "access_right": "open",
+ "license": "cc-by-4.0",
+ "creators": [
+  {
+   "name": "Yevtushenko, Serhii V.",
+   "orcid": "0009-0005-6895-8156",
+   "affiliation": "National University \"Odesa Law Academy\", Department of Cybersecurity, Odesa, Ukraine"
+  }
+ ],
+ "keywords": [
+  "keystroke dynamics",
+  "behavioural biometrics",
+  "mobile authentication",
+  "touch dynamics",
+  "inertial sensors",
+  "accelerometer",
+  "gyroscope",
+  "Ukrainian",
+  "Android",
+  "dataset"
+ ],
+ "description": "<p>498 typing sessions from 71 people on 56 Android phones, recorded with a keyboard written for the study: every key press and release, the touch that caused it, and the motion of the phone at a requested 200 Hz while it was being typed on. Ukrainian text on the ЙЦУКЕН layout, collected between 16 September and 26 October 2026.</p><p><strong>What is in it.</strong> 97&nbsp;974 key events (48&nbsp;987 press and release pairs) with per-key touch geometry, 16&nbsp;608&nbsp;404 samples of accelerometer, gyroscope, magnetometer and rotation vector, 82 participant records over 71 people and 56 devices of 46 distinct models, Android 9 to 16. Three tasks: a 16-character fixed phrase, an 89-character Ukrainian pangram typed under three conditions, and free text.</p><p><strong>Why it is different.</strong> Most keystroke corpora record one person per device, which makes person and hardware inseparable: a classifier that tells two records apart may be telling two handsets apart, and nothing in the data can show which. This corpus breaks that confounding from both sides. 14 devices carry two or more people, giving 63 pairs of different people on identical hardware, and 11 people appear on two devices, so a template can be tested where it was not enrolled.</p><p><strong>The condition was measured, not assumed.</strong> Each participant typed the same sentence sitting, standing, and with the phone flat on a surface. The phone's own gyroscope recorded whether it really was flat: of 90 sessions instructed that way, 74 are measurable and only 38 actually were. The instruction and the observation are separate columns, and the dataset documents which to filter on. The order of the three conditions is counterbalanced by a 3×3 Latin square assigned deterministically from the participant identifier.</p><p><strong>Published with it:</strong> a data dictionary for every column, a quality guide, an itemised list of known defects with session identifiers, the keyboard layout key by key, the stimuli with hashes, the collection protocol, the consent text in translation, a privacy analysis with the residual leak measured rather than asserted, a fixed verification protocol, and a baseline result of 22.2&nbsp;% equal error rate with the code that produces it.</p><p><strong>Limits.</strong> 71 students of one Ukrainian university, 75 of 82 records under 20 years of age, one language, one layout. Nothing here supports a claim about a population.</p><p><strong>Files.</strong> <code>kdua-mobile-1.0.zip</code> is the complete package; unpacking it and running <code>python code/verify.py --dataset .</code> checks both the byte checksums and the content fingerprint. <code>sample.zip</code> is three sessions to look at first. The content fingerprint of this version is <code>00330347a3e47af885486916fd89306f73a7c5baf5124d672075726785babcf8</code>.</p><p>Code is MIT licensed, data and documentation CC BY 4.0. Attribution is a condition of the licence: cite this record by its DOI.</p>",
+ "notes": "Do not attempt to re-identify participants, and do not combine this dataset with any list of the cohort it came from. The licence permits reuse of the data; it does not make that acceptable. See docs/privacy.md in the package.",
+ "related_identifiers": [
+  {
+   "identifier": "10.15276/imms.v15.no3.367",
+   "relation": "isSupplementTo",
+   "resource_type": "publication-article",
+   "scheme": "doi"
+  },
+  {
+   "identifier": "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile",
+   "relation": "isSupplementTo",
+   "resource_type": "software",
+   "scheme": "url"
+  }
+ ],
+ "communities": []
+}

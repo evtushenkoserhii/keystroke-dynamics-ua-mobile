@@ -1,0 +1,22 @@
+# Line endings decide whether the checksums of this dataset hold.
+#
+# Every published CSV is written with LF endings on purpose, and both
+# checksums.sha256 and fingerprint.sha256 are taken over those bytes. A clone on
+# Windows with core.autocrlf=true would rewrite them to CRLF, change every line
+# of every table, and make the manifest fail for a reason nobody would guess.
+# The rule below prevents that: LF in the working copy on every platform.
+
+* text=auto eol=lf
+
+*.csv   text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.py    text eol=lf
+*.R     text eol=lf
+*.cff   text eol=lf
+*.sha256 text eol=lf
+
+# Already compressed or binary: never touched, never diffed as text.
+*.gz      binary
+*.zip     binary
+*.parquet binary

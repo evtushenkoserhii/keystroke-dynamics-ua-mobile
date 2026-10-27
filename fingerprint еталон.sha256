@@ -1,0 +1,12 @@
+# Content fingerprint of the converted data.
+# Independent of operating system, file format and library versions,
+# unlike checksums.sha256, which covers the published files as bytes.
+# produced by python 3.13.17, pandas 3.0.5, pyarrow 26.0.0, Linux x86_64
+
+db4990abc382a4f1580a31e31d9e0f5cfba61d1598fe7b54322fccbd9d891dfd  participants
+f1923da68b7f0da02bd208fe5a3d777baa1141078287ae79358d318604b13167  devices
+080463cb92e79669929458b4f465e6e7fe5f5caeaf650564c1e837e23f9598e5  sessions
+d3c795d9620c2a6f995cd56148a69e1a1104f8f64d45f37593f3b10dee471278  key_events
+dc9d536400902d96023b2f069e95112a15bc68938c53c0ba6e27f756486beca3  sensors
+
+f34641cc80ad5f4bc51bea1d462c059c2816b1ab8bdf4de9e8117bf3bce80c9f  overall

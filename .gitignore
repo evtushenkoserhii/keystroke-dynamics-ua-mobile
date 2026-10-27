@@ -1,0 +1,30 @@
+# What stays out of the Git repository.
+#
+# The repository holds the code, the documentation, the sample and the three
+# small tables, so that it can be read and cloned in seconds. The complete
+# package, sensors included, lives on Zenodo under its DOI. README.md says
+# which is which.
+
+# 389 MB in 495 files: too large for Git, and Git LFS does not help, because the
+# free bandwidth quota is 1 GB a month and one clone of this is a third of it.
+data/sensors/
+
+# Derived tables, 2.5 MB. Reproduced exactly by code/features.py from the
+# published events, so versioning them would only invite them to drift.
+data/features/
+
+# Release artefacts, built by code/make_release_zip.py
+*.zip
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
