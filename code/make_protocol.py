@@ -170,8 +170,10 @@ def main() -> None:
     out = args.dataset / "splits"
     out.mkdir(parents=True, exist_ok=True)
     target = out / "verification_protocol.json"
+    # newline="\n" so the file is byte-identical on Windows and on Linux: its
+    # hash is in checksums.sha256.
     target.write_text(json.dumps(proto, ensure_ascii=False, indent=1) + "\n",
-                      encoding="utf-8")
+                      encoding="utf-8", newline="\n")
 
     for k, v in proto["counts"].items():
         print(f"  {k:24s} {v}")

@@ -6,6 +6,8 @@ corrects stays downloadable, so that a paper citing it can still be checked.
 
 ## 1.0 – 2026-10-26
 
+DOI: [10.5281/zenodo.23691798](https://doi.org/10.5281/zenodo.23691798)
+
 First public release. Collection ran from 16 September to 26 October 2026 and is
 closed; the corpus is frozen.
 

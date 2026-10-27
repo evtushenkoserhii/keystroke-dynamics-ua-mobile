@@ -844,7 +844,9 @@ def _checksums(data: Path, target: Path) -> None:
             for chunk in iter(lambda: f.read(1 << 20), b""):
                 h.update(chunk)
         lines.append(f"{h.hexdigest()}  {name}")
-    target.write_text("\n".join(lines) + "\n", encoding="utf-8")
+    # newline="\n": on Windows the default translates every \n to CRLF, and
+    # a manifest that differs by platform defeats its own purpose.
+    target.write_text("\n".join(lines) + "\n", encoding="utf-8", newline="\n")
     if stray:
         print("  ! data/ holds file(s) that are not part of the dataset and "
               "have been checksummed with it:")
@@ -959,7 +961,7 @@ def fingerprint(data: Path, sensors: dict, target: Path) -> str:
             ""]
     body += [f"{digest}  {name}" for name, digest in parts]
     body += ["", f"{total}  overall", ""]
-    target.write_text("\n".join(body), encoding="utf-8")
+    target.write_text("\n".join(body), encoding="utf-8", newline="\n")
     return total
 
 

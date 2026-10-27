@@ -4,6 +4,7 @@
  "title": "KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors",
  "description": "498 typing sessions from 71 people on 56 Android phones: key press and release timings, per-key touch geometry, and four motion sensor streams at a requested 200 Hz. Ukrainian text on the YTsUKEN layout.",
  "version": "1.0",
+ "id": "https://doi.org/10.5281/zenodo.23691798",
  "created": "2026-10-26T00:00:00Z",
  "keywords": [
   "keystroke dynamics",
@@ -28,7 +29,7 @@
    "organization": "National University \"Odesa Law Academy\", Department of Cybersecurity"
   }
  ],
- "homepage": "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile",
+ "homepage": "https://github.com/evtushenkoserhii/keystroke-dynamics-ua-mobile",
  "sources": [
   {
    "title": "Collected with a custom Android input method; see docs/collection_protocol.md",

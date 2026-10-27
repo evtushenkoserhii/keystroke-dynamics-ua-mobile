@@ -126,7 +126,8 @@ def check_fingerprint(dataset: Path, quick: bool) -> list[str]:
             problems.append(f"table content differs: {name}")
 
     if quick:
-        print("  fingerprint       tables only, sensors skipped (--quick)")
+        print("  fingerprint       tables only, sensors skipped (--quick),")
+        print("                    so the overall value is not checked")
         return problems
 
     sens = hashlib.sha256()
@@ -154,9 +155,18 @@ def check_fingerprint(dataset: Path, quick: bool) -> list[str]:
 
 
 def write_fingerprint(dataset: Path) -> str:
-    """Recompute fingerprint.sha256 from the package, keeping the header the
+    """
+    Recompute fingerprint.sha256 from the package, keeping the header the
     conversion wrote: the definition lives in convert.py and is repeated here
-    only so that a release can be hashed without the raw archives."""
+    only so that a release can be hashed without the raw archives.
+
+    The value that was in the file is read first and reported, because a check
+    run after a rewrite compares the file against itself and can only pass. The
+    line printed here is the only one that says anything.
+    """
+    target = dataset / "fingerprint.sha256"
+    before = read_manifest(target).get("overall") if target.exists() else None
+
     parts = [(name, file_sha256(dataset / "data" / fn)) for name, fn in TABLES]
     sens = hashlib.sha256()
     files = sorted((dataset / "data" / "sensors").glob("*.parquet")) or \
@@ -171,14 +181,21 @@ def write_fingerprint(dataset: Path) -> str:
         overall.update(f"{name} {digest}\n".encode("utf-8"))
     total = overall.hexdigest()
 
-    target = dataset / "fingerprint.sha256"
     header = [l for l in (target.read_text(encoding="utf-8").splitlines()
                           if target.exists() else []) if l.startswith("#")]
     if not header:
         header = ["# Content fingerprint of the published package."]
     body = header + [""] + [f"{d}  {n}" for n, d in parts] + ["", f"{total}  overall", ""]
-    target.write_text("\n".join(body), encoding="utf-8")
+    target.write_text("\n".join(body), encoding="utf-8", newline="\n")
     print(f"  fingerprint.sha256 rewritten, {len(files)} sensor files")
+    if before is None:
+        print("                     no previous value to compare with")
+    elif before == total:
+        print(f"                     unchanged: {total}")
+    else:
+        print(f"                     CHANGED from {before}")
+        print(f"                                to {total}")
+        print("                     the data are not what they were; find out why")
     return total
 
 
@@ -198,7 +215,7 @@ def main() -> None:
             name = path.relative_to(args.dataset).as_posix()
             lines.append(f"{file_sha256(path)}  {name}")
         (args.dataset / "checksums.sha256").write_text(
-            "\n".join(lines) + "\n", encoding="utf-8")
+            "\n".join(lines) + "\n", encoding="utf-8", newline="\n")
         print(f"  checksums.sha256  rewritten, {len(lines)} files")
         write_fingerprint(args.dataset)
 

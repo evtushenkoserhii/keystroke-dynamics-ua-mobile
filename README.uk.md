@@ -7,8 +7,7 @@
 дотик, який його викликав, і рух апарата з частотою 200 Гц під час набору.
 Український текст, розкладка ЙЦУКЕН.
 
-Версія 1.0, зібрано з 16 вересня до 26 жовтня 2026 року. DOI: *буде присвоєно
-під час публікації.*
+Версія 1.0, зібрано з 16 вересня до 26 жовтня 2026 року. DOI: [10.5281/zenodo.23691798](https://doi.org/10.5281/zenodo.23691798)
 
 ---
 
@@ -164,6 +163,23 @@ python code/verify.py --dataset .
 
 Посилання - це умова використання, а не ввічливість: цитуйте набір за його DOI.
 Машиночитна форма - у `CITATION.cff`.
+
+```
+Yevtushenko, S. (2026). KDUA-Mobile: Ukrainian mobile keystroke dynamics with
+motion sensors (version 1.0) [Data set]. Zenodo. https://doi.org/10.5281/zenodo.23691798
+```
+
+```bibtex
+@dataset{yevtushenko2026kdua,
+  author    = {Yevtushenko, Serhii},
+  title     = {KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors},
+  year      = {2026},
+  version   = {1.0},
+  publisher = {Zenodo},
+  doi       = {10.5281/zenodo.23691798},
+  url       = {https://doi.org/10.5281/zenodo.23691798}
+}
+```
 
 ## Межі, про які варто знати до початку
 

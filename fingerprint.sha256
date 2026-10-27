@@ -4,7 +4,7 @@
 # footers carry the writer's version and its bytes are not.
 # Recompute with code/verify.py; checksums.sha256 covers every file
 # as bytes and cannot be reproduced on another machine.
-# produced by python 3.13.17, pandas 3.0.5, pyarrow 26.0.0, Linux x86_64
+# produced by python 3.13.3, pandas 3.1.0, pyarrow 26.0.0, Windows AMD64
 
 e999a9bf0813444793c6d89e15cf63072d8048f07ab5ccff660e23c891109914  participants
 36a084a5b755db4a0c3bd92d1f3d0c6750d0039b028623781ceb93a0791e1e96  devices

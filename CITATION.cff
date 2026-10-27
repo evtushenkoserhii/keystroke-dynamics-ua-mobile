@@ -14,11 +14,9 @@ type: dataset
 version: "1.0"
 date-released: "2026-10-26"
 license: CC-BY-4.0
-# TODO before release: replace with the Zenodo DOI of version 1.0, and keep the
-# concept DOI in identifiers below so that later versions stay reachable.
-doi: "10.5281/zenodo.0000000"
-url: "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile"
-repository-code: "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile"
+doi: "10.5281/zenodo.23691798"
+url: "https://github.com/evtushenkoserhii/keystroke-dynamics-ua-mobile"
+repository-code: "https://github.com/evtushenkoserhii/keystroke-dynamics-ua-mobile"
 keywords:
   - keystroke dynamics
   - behavioural biometrics
@@ -28,10 +26,8 @@ keywords:
   - Ukrainian
   - Android
 authors:
-  # TODO: expand the given names before release; initials are what the
-  # published papers carry.
   - family-names: "Yevtushenko"
-    given-names: "S. V."
+    given-names: "Serhii"
     orcid: "https://orcid.org/0009-0005-6895-8156"
     affiliation: "National University \"Odesa Law Academy\", Department of Cybersecurity, Odesa, Ukraine"
 references:
@@ -47,7 +43,7 @@ references:
     title: "Aspects of building and applying keystroke dynamics analysis systems for user authentication"
     authors:
       - family-names: "Yevtushenko"
-        given-names: "S. V."
+        given-names: "Serhii"
     journal: "Informatics and Mathematical Methods in Simulation"
     volume: 15
     issue: 3

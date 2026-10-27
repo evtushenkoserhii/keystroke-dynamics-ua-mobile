@@ -6,7 +6,7 @@
   "makes the GitHub-Zenodo webhook mint a second DOI for a snapshot of the",
   "repository, which would be a record without the sensor data in it. See the",
   "release instructions.",
-  "Fill in the two placeholders marked REPLACE-ME before publishing."
+  "DOI 10.5281/zenodo.23691798 is already reserved for this record; check that the form shows the same one before publishing."
  ],
  "upload_type": "dataset",
  "title": "KDUA-Mobile: Ukrainian mobile keystroke dynamics with motion sensors, version 1.0",
@@ -44,7 +44,7 @@
    "scheme": "doi"
   },
   {
-   "identifier": "https://github.com/REPLACE-ME/keystroke-dynamics-ua-mobile",
+   "identifier": "https://github.com/evtushenkoserhii/keystroke-dynamics-ua-mobile",
    "relation": "isSupplementTo",
    "resource_type": "software",
    "scheme": "url"
